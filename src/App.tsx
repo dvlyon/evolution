@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import { GameProvider } from './contexts/GameContext'
+import LevelSelector from './components/LevelSelector'
+import GameMap from './components/GameMap'
+import Verifier from './components/Verifier'
+import './styles/styles.css'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <GameProvider>
+      <LevelSelector />
+      <GameMap />
+      <Verifier />
+      { 'verify: Correct! Password: JustWarmingUp' }
+    </GameProvider>
+  )
 }
 
-export default App;
+export default App
