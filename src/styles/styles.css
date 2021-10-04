@@ -1,10 +1,8 @@
 .btn{
-  border: 1px solid #ddd;
-  -o-transition: background-color .2s ease-in;
-  -moz-transition: background-color .2s ease-in;
-  -webkit-transition: background-color .2s ease-in;
-  transition: background-color .2s ease-in;
-  height: 50px;
-  width: 50px;
-  cursor: pointer;
+  border: 1px solid #ddd !important;
+  height: 50px !important;
+  width: 50px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: inline !important;
 }
