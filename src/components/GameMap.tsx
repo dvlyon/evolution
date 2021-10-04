@@ -10,7 +10,7 @@ const GameMap = () => {
       <h2>Game:</h2>
 
       <div style={{
-        minWidth: `${map[0].length * 50}px`,
+        minWidth: `${(map ? map[0].length : 0) * 50}px`,
         width: 'fit-content',
       }}>
         {map.map((row: PipeType[], y: number) => {
