@@ -1,4 +1,13 @@
-.btn{
+body {
+  max-width: unset;
+  text-align: center;
+}
+
+input {
+  margin: auto;
+}
+
+.btn {
   border: 1px solid #ddd !important;
   height: 50px !important;
   width: 50px !important;

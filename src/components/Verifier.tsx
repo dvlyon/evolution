@@ -2,7 +2,11 @@ import useGame from "../hooks/useGame"
 // import { localVerify, autoSolver } from "../lib/functions"
 
 const Verifier = () => {
-  const { /*map,*/ verify } = useGame()
+  const { map, verify, disabled } = useGame()
+
+  if (!map || map.length <= 0) {
+    return null
+  }
 
   const onClickVerify = () => {
     verify()
@@ -19,7 +23,7 @@ const Verifier = () => {
   return (
     <div>
       <h2>Options:</h2>
-      <input type="button" value="Verify" onClick={onClickVerify} />
+      <input type="button" value="Verify" onClick={onClickVerify} disabled={disabled} />
       {/* <input type="button" value="Local Verify" onClick={onClickLocalVerify} />
       <input type="button" value="Autosolve" onClick={onClickAutoSolve} /> */}
     </div>

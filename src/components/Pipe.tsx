@@ -8,7 +8,7 @@ interface IPipe {
 }
 
 const Pipe = ({ value, x, y }: IPipe) => {
-  const { rotate } = useGame()
+  const { rotate, disabled } = useGame()
 
   const onClick = () => {
     rotate(x, y)
@@ -24,6 +24,7 @@ const Pipe = ({ value, x, y }: IPipe) => {
         backgroundImage: `url(/assets/Pipes/${value}.png)`,
         backgroundSize: 'contain',
       }}
+      disabled={disabled}
     />
   )
 }

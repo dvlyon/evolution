@@ -5,6 +5,10 @@ import { PipeType } from '../lib/types'
 const GameMap = () => {
   const { map } = useGame()
 
+  if (!map || map.length <= 0) {
+    return null
+  }
+
   const width = (map && map[0] ? map[0].length : 0) * 50
 
   return (
@@ -14,6 +18,7 @@ const GameMap = () => {
       <div style={{
         minWidth: `${width}px`,
         width: 'fit-content',
+        margin: 'auto',
       }}>
         {map.map((row: PipeType[], y: number) => {
           return (
