@@ -1,7 +1,8 @@
 import useGame from "../hooks/useGame"
+import { PipeType } from "../lib/types"
 
 interface IPipe {
-  value: string
+  value: PipeType
   x: number
   y: number
 }

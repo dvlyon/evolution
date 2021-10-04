@@ -17,8 +17,7 @@ const LevelSelector = () => {
 
   return (
     <div>
-      <h1>Select game level:</h1>
-
+      <h2>Select game level:</h2>
       <form onSubmit={onSubmit}>
         <label htmlFor="level">Level:</label>
         <input type="number" id="points" name="level" step="1" value={level} max={6} min={1} onChange={onChange} />

@@ -1,10 +1,11 @@
 import { createContext, ReactNode, useEffect, useState } from "react"
 import { w3cwebsocket } from 'websocket'
+import { PipeType } from '../lib/types'
 
 interface IGameContext {
   client: w3cwebsocket | null
   newGame: (level: number) => void
-  map: string[]
+  map: PipeType[][]
   rotate: (x: number, y: number) => void
   verify: () => void
 }
@@ -23,7 +24,7 @@ interface IGameProvider {
 
 export const GameProvider = ({ children }: IGameProvider) => {
   const [client, setClient] = useState<w3cwebsocket | null>(null)
-  const [map, setMap] = useState<string[]>([])
+  const [map, setMap] = useState<PipeType[][]>([])
 
   useEffect(() => {
     const gameClient = new w3cwebsocket('wss://hometask.eg1236.com/game-pipes/')
@@ -51,8 +52,12 @@ export const GameProvider = ({ children }: IGameProvider) => {
         }
 
         if (data.substring(0, 4) === 'map:') {
-          const newMap = data.split("\n")
-          newMap.splice(0, 1)
+          const splitData = data.split("\n")
+          splitData.splice(0, 1)
+
+          const newMap: PipeType[][] = []
+          splitData.forEach(s => newMap.push(s.split('') as PipeType[]))
+          newMap.pop()
 
           setMap(newMap)
         }
