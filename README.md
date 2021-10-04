@@ -1,8 +1,30 @@
+# David Lyon - Pipes Puzzle - Evolution
+
 ## Solved Puzzles
 
-### Level 1: JustWarmingUp
+### Level 1
 
-# Getting Started with Create React App
+JustWarmingUp
+
+## Limitations
+
+- Loading level 6 maps takes a considerable amount of time.
+- Visibility for level 3+ maps is not great.
+- There's no reconnect functionality should the websocket fail.
+
+## Decisions
+
+- Kept all state and server calls in a single context/hook solution. On a bigger level I would've further split local and server contexts.
+
+## Public URL
+
+[https://dvlyon-evolution-xkqty.ondigitalocean.app](https://dvlyon-evolution-xkqty.ondigitalocean.app)
+
+## Notes
+
+Initially went for a brute-force autosolver, but with maps bigger than 5x5 it was taking absurd amounts of time, thus disabled all related functionality.
+
+# Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
