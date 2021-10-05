@@ -1,7 +1,7 @@
 import useGame from "../hooks/useGame"
 import LevelSelector from './LevelSelector'
 import GameMap from './GameMap'
-import Verifier from './Verifier'
+import Options from './Options'
 import Passwords from './Passwords'
 
 function Game() {
@@ -17,7 +17,7 @@ function Game() {
     <>
       <LevelSelector />
       <GameMap />
-      <Verifier />
+      <Options />
       <Passwords />
     </>
   )

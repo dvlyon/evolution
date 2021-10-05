@@ -8,7 +8,7 @@ JustWarmingUp
 
 ## Limitations
 
-- Loading level 6 maps takes a considerable amount of time.
+- Loading level 5/6 maps takes a considerable amount of time.
 - Visibility for level 3+ maps is not great.
 - There's no reconnect functionality should the websocket fail.
 
@@ -19,6 +19,10 @@ JustWarmingUp
 ## Public URL
 
 [https://dvlyon-evolution-xkqty.ondigitalocean.app](https://dvlyon-evolution-xkqty.ondigitalocean.app)
+
+## Autosolver
+
+Currently autosolver doesn't actually autosolve the puzzle but gives you a console log with the solution map you can change yourself.
 
 ## Notes
 
