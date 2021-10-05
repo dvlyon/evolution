@@ -369,5 +369,5 @@ export const autoSolver = (originalMap: PipeType[][]) => {
     }
   }
 
-  console.log(solvedMap)
+  return solvedMap
 }

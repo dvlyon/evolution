@@ -6,6 +6,10 @@
 
 JustWarmingUp
 
+### Level 2
+
+DefinitelyWarm
+
 ## Limitations
 
 - Loading level 5/6 maps takes a considerable amount of time.
@@ -22,7 +26,7 @@ JustWarmingUp
 
 ## Autosolver
 
-Currently autosolver doesn't actually autosolve the puzzle but gives you a console log with the solution map you can change yourself.
+Currently autosolver doesn't work 100%, likely missing some edge cases still.
 
 ## Notes
 

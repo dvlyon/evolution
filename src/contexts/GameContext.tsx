@@ -13,6 +13,7 @@ interface IGameContext {
   reset: () => void
   passwords: string[]
   disabled: boolean
+  autoSolve: (solvedMap: PipeType[][]) => void
 }
 
 export const GameContext = createContext<IGameContext>({
@@ -25,6 +26,7 @@ export const GameContext = createContext<IGameContext>({
   reset: () =>  null,
   passwords: [],
   disabled: false,
+  autoSolve: (_solvedMap: PipeType[][]) => null,
 })
 
 interface IGameProvider {
@@ -91,6 +93,8 @@ export const GameProvider = ({ children }: IGameProvider) => {
           setDisabled(true)
           alert('Correct!')
         }
+
+        console.log(data)
       }
     }
   }, [client])
@@ -138,6 +142,30 @@ export const GameProvider = ({ children }: IGameProvider) => {
     setMap([])
   }
 
+  const autoSolve = async (solvedMap: PipeType[][]) => {
+    let rotateText = 'rotate '
+
+    for (let y = 0; y < map.length; y++) {
+      for (let x = 0; x < map[0].length; x++) {
+        if (map[y][x] !== solvedMap[y][x]) {
+          const pipe = pipes.find(p => p.value === map[y][x])
+          const solvedPipe = pipes.find(p => p.value === solvedMap[y][x])
+          if (pipe && solvedPipe) {
+            const index = rotations[pipe.rotation].indexOf(pipe.value)
+            const solvedindex = rotations[solvedPipe.rotation].indexOf(solvedPipe.value)
+
+            for (let i = 0; i < Math.abs(index - solvedindex); i++) {
+              rotateText += `${x} ${y}\n`
+            }
+          }
+        }
+      }
+    }
+
+    client?.send(rotateText)
+    setMap(solvedMap)
+  }
+
   return (
     <GameContext.Provider value={{
       client,
@@ -149,6 +177,7 @@ export const GameProvider = ({ children }: IGameProvider) => {
       reset,
       passwords,
       disabled,
+      autoSolve,
     }}>
       {children}
     </GameContext.Provider>
