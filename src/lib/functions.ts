@@ -369,5 +369,13 @@ export const autoSolver = (originalMap: PipeType[][]) => {
     }
   }
 
+  for (let y = 0; y < originalMap.length; y++) {
+    for (let x = 0; x < originalMap[0].length; x++) {
+      if (!map[y][x].isSet) {
+        console.log('Missing: ', y, x)
+      }
+    }
+  }
+
   return solvedMap
 }

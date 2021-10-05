@@ -93,8 +93,6 @@ export const GameProvider = ({ children }: IGameProvider) => {
           setDisabled(true)
           alert('Correct!')
         }
-
-        console.log(data)
       }
     }
   }, [client])
