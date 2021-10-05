@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useEffect, useState } from "react"
 import { w3cwebsocket } from 'websocket'
-import { PipeType } from '../lib/types'
+import { PipeType, IAutoSolveMap } from '../lib/types'
 import { pipes, rotations } from '../lib/constants'
 
 interface IGameContext {
@@ -13,7 +13,8 @@ interface IGameContext {
   reset: () => void
   passwords: string[]
   disabled: boolean
-  autoSolve: (solvedMap: PipeType[][]) => void
+  autoSolve: (solvedMap: PipeType[][], autoSolveMap: IAutoSolveMap[][]) => void
+  autoSolveMap: IAutoSolveMap[][]
 }
 
 export const GameContext = createContext<IGameContext>({
@@ -26,7 +27,8 @@ export const GameContext = createContext<IGameContext>({
   reset: () =>  null,
   passwords: [],
   disabled: false,
-  autoSolve: (_solvedMap: PipeType[][]) => null,
+  autoSolve: (_solvedMap: PipeType[][], _autoSolveMap: IAutoSolveMap[][]) => null,
+  autoSolveMap: [],
 })
 
 interface IGameProvider {
@@ -39,16 +41,19 @@ export const GameProvider = ({ children }: IGameProvider) => {
   const [map, setMap] = useState<PipeType[][]>([])
   const [passwords, setPasswords] = useState<string[]>([])
   const [disabled, setDisabled] = useState(false)
+  const [autoSolveMap, setAutoSolveMap] = useState<IAutoSolveMap[][]>([])
 
   useEffect(() => {
     const gameClient = new w3cwebsocket('wss://hometask.eg1236.com/game-pipes/')
 
     setClient(gameClient)
     setMap([])
+    setAutoSolveMap([])
 
     return () => {
       setClient(null)
       setMap([])
+      setAutoSolveMap([])
     }
   }, [])
 
@@ -138,9 +143,10 @@ export const GameProvider = ({ children }: IGameProvider) => {
 
   const reset = () => {
     setMap([])
+    setAutoSolveMap([])
   }
 
-  const autoSolve = async (solvedMap: PipeType[][]) => {
+  const autoSolve = async (solvedMap: PipeType[][], asm: IAutoSolveMap[][]) => {
     let rotateText = 'rotate '
 
     for (let y = 0; y < map.length; y++) {
@@ -162,6 +168,8 @@ export const GameProvider = ({ children }: IGameProvider) => {
 
     client?.send(rotateText)
     setMap(solvedMap)
+    setAutoSolveMap(asm)
+    client?.send('verify')
   }
 
   return (
@@ -176,6 +184,7 @@ export const GameProvider = ({ children }: IGameProvider) => {
       passwords,
       disabled,
       autoSolve,
+      autoSolveMap,
     }}>
       {children}
     </GameContext.Provider>

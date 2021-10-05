@@ -8,7 +8,6 @@ input {
 }
 
 .btn {
-  border: 1px solid #ddd !important;
   height: 50px !important;
   width: 50px !important;
   padding: 0 !important;

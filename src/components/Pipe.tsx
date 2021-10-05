@@ -8,11 +8,13 @@ interface IPipe {
 }
 
 const Pipe = ({ value, x, y }: IPipe) => {
-  const { rotate, disabled } = useGame()
+  const { rotate, disabled, autoSolveMap } = useGame()
 
   const onClick = () => {
     rotate(x, y)
   }
+
+  const borderColor = autoSolveMap && autoSolveMap.length > 0 ? autoSolveMap[y][x].isSet ? 'green' : 'red' : '#ddd'
 
   return (
     <input
@@ -23,6 +25,7 @@ const Pipe = ({ value, x, y }: IPipe) => {
       style={{
         backgroundImage: `url(/assets/Pipes/${value}.png)`,
         backgroundSize: 'contain',
+        border: `1px solid ${borderColor}`,
       }}
       disabled={disabled}
     />

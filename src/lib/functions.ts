@@ -1,5 +1,5 @@
 import { pipes, rotations, IPipes } from './constants'
-import { PipeType } from './types'
+import { PipeType, IAutoSolveMap } from './types'
 
 export const localVerify = (map: PipeType[][]) => {
   for (let y = 0; y < map.length; y++) {
@@ -146,11 +146,6 @@ export const bruteAutoSolver = (puzzleMap: PipeType[][]) => {
   return map
 }
 
-interface IAutoSolveMap {
-  pipeType: number
-  isSet: boolean
-}
-
 export const autoSolver = (originalMap: PipeType[][]) => {
   let map: IAutoSolveMap[][] = []
   let solvedMap: PipeType[][] = []
@@ -167,9 +162,7 @@ export const autoSolver = (originalMap: PipeType[][]) => {
           pipeType: pipe.rotation,
           isSet: pipe.rotation === 3,
         })
-        solvedMap[y].push(rotations[pipe.rotation][0])
-      } else {
-        return []
+        solvedMap[y].push(originalMap[y][x])
       }
     }
   }
@@ -369,13 +362,8 @@ export const autoSolver = (originalMap: PipeType[][]) => {
     }
   }
 
-  for (let y = 0; y < originalMap.length; y++) {
-    for (let x = 0; x < originalMap[0].length; x++) {
-      if (!map[y][x].isSet) {
-        console.log('Missing: ', y, x)
-      }
-    }
+  return {
+    solvedMap,
+    map,
   }
-
-  return solvedMap
 }

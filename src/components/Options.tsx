@@ -13,14 +13,15 @@ const Options = () => {
   }
 
   const onClickAutoSolve = () => {
-    autoSolve(autoSolver(map))
+    const autoSolverData = autoSolver(map)
+    autoSolve(autoSolverData.solvedMap, autoSolverData.map)
   }
 
   return (
     <div>
       <h2>Options:</h2>
       <input type="button" value="Verify" onClick={onClickVerify} disabled={disabled} />
-      <input type="button" value="Autosolve (WIP)" onClick={onClickAutoSolve} />
+      <input type="button" value="Autosolve (WIP)" onClick={onClickAutoSolve} disabled={disabled} />
     </div>
   )
 }
