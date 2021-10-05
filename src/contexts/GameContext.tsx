@@ -158,7 +158,14 @@ export const GameProvider = ({ children }: IGameProvider) => {
             const index = rotations[pipe.rotation].indexOf(pipe.value)
             const solvedindex = rotations[solvedPipe.rotation].indexOf(solvedPipe.value)
 
-            for (let i = 0; i < Math.abs(index - solvedindex); i++) {
+            let amount = 0
+            if (index < solvedindex) {
+              amount = solvedindex - index
+            } else {
+              amount = rotations[pipe.rotation].length - index + solvedindex
+            }
+
+            for (let i = 0; i < amount; i++) {
               rotateText += `${x} ${y}\n`
             }
           }
